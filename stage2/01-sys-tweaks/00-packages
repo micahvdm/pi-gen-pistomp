@@ -41,3 +41,4 @@ libavcodec-dev libavutil-dev libbluetooth-dev libboost-dev libeigen3-dev libfftw
 libgtk2.0-dev libgtkmm-2.4-dev liblrdf0-dev libsamplerate0-dev libsigc++-2.0-dev libsndfile1-dev libzita-convolver-dev
 libzita-resampler-dev lv2-dev p7zip-full python3-all python3-setuptools libreadline-dev zita-alsa-pcmi-utils 
 dnsmasq iptables python3-smbus liblo-dev python3-liblo libzita-alsa-pcmi-dev authbind rcconf libfluidsynth-dev lockfile-progs
+jack2 browsepy mod-host mod-ui mod-midi-merger amidithru libhylia rt-kernel-pi34 rt-kernel-pi5 touchosc2midi usbmount pi-stomp pi-stomp-pedalboards

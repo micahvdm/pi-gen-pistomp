@@ -1,10 +1,6 @@
 #!/bin/bash -e
 
 install -m 644 files/sys/.bash_aliases ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/
-install -m 644 files/sys/linux-image-6.1.54-rt15-v8+_6.1.54-rt15-v8+-2_arm64.deb ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/tmp/
-install -m 644 files/sys/linux-headers-6.1.54-rt15-v8+_6.1.54-rt15-v8+-2_arm64.deb ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/tmp/
-install -m 644 files/sys/linux-libc-dev_6.1.54-rt15-v8+-2_arm64.deb ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/tmp/
-install -m 644 files/sys/linux-image-6.12.9-v8-16k+_6.12.9-ga20d400dff3d-3_arm64.deb ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/tmp/
 install -m 644 files/advertise.diff ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/tmp/
 install -m 644 files/NetworkManager.conf.diff ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/tmp/
 
@@ -16,34 +12,6 @@ cd /home/${FIRST_USER_NAME}/tmp
 patch -b -N -u /usr/local/lib/python3.11/dist-packages/touchosc2midi/advertise.py -i advertise.diff
 
 patch -b -N -u /etc/NetworkManager/NetworkManager.conf -i NetworkManager.conf.diff
-
-dpkg -i linux-headers-6.1.54-rt15-v8+_6.1.54-rt15-v8+-2_arm64.deb
-dpkg -i linux-libc-dev_6.1.54-rt15-v8+-2_arm64.deb
-dpkg -i linux-image-6.1.54-rt15-v8+_6.1.54-rt15-v8+-2_arm64.deb
-
-KERN1=6.1.54-rt15-v8+
-mkdir -p /boot/firmware/6.1.54-rt15-v8+/o/
-cp -d /usr/lib/linux-image-6.1.54-rt15-v8+/overlays/* /boot/firmware/6.1.54-rt15-v8+/o/
-cp -dr /usr/lib/linux-image-6.1.54-rt15-v8+/* /boot/firmware/6.1.54-rt15-v8+/
-cp -d /usr/lib/linux-image-6.1.54-rt15-v8+/broadcom/* /boot/firmware/6.1.54-rt15-v8+/
-touch /boot/firmware/6.1.54-rt15-v8+/o/README
-mv /boot/vmlinuz-6.1.54-rt15-v8+ /boot/firmware/6.1.54-rt15-v8+/
-mv /boot/initrd.img-6.1.54-rt15-v8+ /boot/firmware/6.1.54-rt15-v8+/
-mv /boot/System.map-6.1.54-rt15-v8+ /boot/firmware/6.1.54-rt15-v8+/
-cp /boot/config-6.1.54-rt15-v8+ /boot/firmware/6.1.54-rt15-v8+/
-
-dpkg -i linux-image-6.12.9-v8-16k+_6.12.9-ga20d400dff3d-3_arm64.deb
-
-KERN2=6.12.9-v8-16k+
-mkdir -p /boot/firmware/6.12.9-v8-16k+/o/
-cp -d /usr/lib/linux-image-6.12.9-v8-16k+/overlays/* /boot/firmware/6.12.9-v8-16k+/o/
-cp -dr /usr/lib/linux-image-6.12.9-v8-16k+/* /boot/firmware/6.12.9-v8-16k+/
-cp -d /usr/lib/linux-image-6.12.9-v8-16k+/broadcom/* /boot/firmware/6.12.9-v8-16k+/
-touch /boot/firmware/6.12.9-v8-16k+/o/README
-mv /boot/vmlinuz-6.12.9-v8-16k+ /boot/firmware/6.12.9-v8-16k+/
-mv /boot/initrd.img-6.12.9-v8-16k+ /boot/firmware/6.12.9-v8-16k+/
-mv /boot/System.map-6.12.9-v8-16k+ /boot/firmware/6.12.9-v8-16k+/
-cp /boot/config-6.12.9-v8-16k+ /boot/firmware/6.12.9-v8-16k+/
 
 rm -rf /home/${FIRST_USER_NAME}/tmp
 

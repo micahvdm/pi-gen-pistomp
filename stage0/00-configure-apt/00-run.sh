@@ -2,6 +2,7 @@
 
 install -m 644 files/sources.list "${ROOTFS_DIR}/etc/apt/"
 install -m 644 files/raspi.list "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+install -m 644 files/pistomp.list "${ROOTFS_DIR}/etc/apt/sources.list.d/"
 sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list"
 sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/raspi.list"
 

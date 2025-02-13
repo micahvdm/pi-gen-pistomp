@@ -8,9 +8,6 @@ chmod +x ${ROOTFS_DIR}/etc/update-motd.d/display-pistomp-logo
 
 on_chroot << EOF
 
-# pi-Stomp code
-git clone -b beta-bookworm-dev https://github.com/treefallsound/pi-stomp.git /home/${FIRST_USER_NAME}/pi-stomp
-
 # data dir
 mkdir -p /home/${FIRST_USER_NAME}/data/user-files
 mkdir -p /home/${FIRST_USER_NAME}/data/config
@@ -30,8 +27,8 @@ mkdir -p "/home/${FIRST_USER_NAME}/data/user-files/Amplifier Profiles"
 mkdir -p "/home/${FIRST_USER_NAME}/data/user-files/Aida DSP Models"
 mkdir -p "/home/${FIRST_USER_NAME}/data/user-files/NAM Models"
 
-install -m 644 /home/${FIRST_USER_NAME}/pi-stomp/setup/config_templates/default_config.yml /home/${FIRST_USER_NAME}/data/config/
-install -m 644 /home/${FIRST_USER_NAME}/pi-stomp/setup/config_templates/default-hardware-descriptor.json /home/${FIRST_USER_NAME}/data/config/
+install -m 644 /home/${FIRST_USER_NAME}/pi-stomp/util/config_templates/default_config.yml /home/${FIRST_USER_NAME}/data/config/
+install -m 644 /home/${FIRST_USER_NAME}/pi-stomp/util/config_templates/default-hardware-descriptor.json /home/${FIRST_USER_NAME}/data/config/
 
 # Pedalboards
 rm -rf /home/${FIRST_USER_NAME}/data/.pedalboards
@@ -39,19 +36,9 @@ git clone https://github.com/TreeFallSound/pi-stomp-pedalboards.git /home/${FIRS
 ln -s /home/${FIRST_USER_NAME}/data/.pedalboards /home/${FIRST_USER_NAME}/.pedalboards
 
 # Services
-ln -sf /usr/lib/systemd/system/mod-ala-pi-stomp.service /etc/systemd/system/multi-user.target.wants
+ln -sf /lib/systemd/system/mod-ala-pi-stomp.service /etc/systemd/system/multi-user.target.wants
 
-install -m 755 /home/${FIRST_USER_NAME}/pi-stomp/setup/mod-tweaks/start_touchosc2midi.sh /usr/mod/scripts/
-
-mkdir -p /usr/lib/pistomp-wifi
-install -m 755 /home/${FIRST_USER_NAME}/pi-stomp/setup/services/hotspot/usr/lib/pistomp-wifi/disable_wifi_hotspot.sh /usr/lib/pistomp-wifi
-install -m 755 /home/${FIRST_USER_NAME}/pi-stomp/setup/services/hotspot/usr/lib/pistomp-wifi/enable_wifi_hotspot.sh /usr/lib/pistomp-wifi
-install -m 755 /home/${FIRST_USER_NAME}/pi-stomp/setup/services/wifi_check.sh /usr/lib/pistomp-wifi
-install -m 644 /home/${FIRST_USER_NAME}/pi-stomp/setup/services/hotspot/usr/lib/systemd/system/wifi-hotspot.service /usr/lib/systemd/system
 chown -R ${FIRST_USER_NAME}:${FIRST_USER_NAME} /usr/lib/pistomp-wifi
-
-# USB automounter
-sudo dpkg -i /home/${FIRST_USER_NAME}/pi-stomp/setup/services/usbmount.deb
 
 # Plugins
 mkdir -p /home/${FIRST_USER_NAME}/tmp

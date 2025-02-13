@@ -46,7 +46,7 @@ disable_splash=1
 [pi3]
 kernel=vmlinuz-6.1.54-rt15-v8+
 # initramfs initrd.img-6.1.54-rt15-v8+
-os_prefix=6.1.54-rt15-v8+/
+os_prefix=pi34-rt/
 overlay_prefix=o/
 # Hack for spi0, cs0_pin should be unused
 dtoverlay=spi0-2cs,cs0_pin=14,cs1_pin=7
@@ -54,7 +54,7 @@ dtoverlay=spi0-2cs,cs0_pin=14,cs1_pin=7
 [pi4]
 kernel=vmlinuz-6.1.54-rt15-v8+
 # initramfs initrd.img-6.1.54-rt15-v8+
-os_prefix=6.1.54-rt15-v8+/
+os_prefix=pi34-rt/
 overlay_prefix=o/
 # Hack for spi0, cs0_pin should be unused
 dtoverlay=spi0-2cs,cs0_pin=0,cs1_pin=7
@@ -62,7 +62,7 @@ dtoverlay=spi0-2cs,cs0_pin=0,cs1_pin=7
 [pi5]
 kernel=vmlinuz-6.12.9-v8-16k+
 # initramfs initrd.img-6.12.9-v8-16k+
-os_prefix=6.12.9-v8-16k+/
+os_prefix=pi5-rt/
 overlay_prefix=o/
 # Hack for spi0, cs0_pin should be unused
 dtoverlay=spi0-2cs,cs0_pin=0,cs1_pin=7
