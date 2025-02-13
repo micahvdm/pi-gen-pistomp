@@ -9,8 +9,6 @@ on_chroot << EOF
 
 cd /home/${FIRST_USER_NAME}/tmp
 
-patch -b -N -u /usr/lib/python3.11/dist-packages/touchosc2midi/advertise.py -i advertise.diff
-
 patch -b -N -u /etc/NetworkManager/NetworkManager.conf -i NetworkManager.conf.diff
 
 rm -rf /home/${FIRST_USER_NAME}/tmp
